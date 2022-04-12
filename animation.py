@@ -19,13 +19,13 @@ plotPath1 = "C:\\Users\\mcha7\\Desktop\\COMP_PHYS\\HW7\\Plots\\"
 dataPath2 = "C:\\Users\\mcha7\\OneDrive\\Desktop\\Code\\COMP_PHYS\\PHYS-401-CompPhys\\HW7\\Data\\"
 plotPath2 = "C:\\Users\\mcha7\\OneDrive\\Desktop\\Code\\COMP_PHYS\\PHYS-401-CompPhys\\HW7\\Plots\\"
 
-data = pd.read_csv(dataPath2 + "diffuse.csv")
+data = pd.read_csv(dataPath1 + "diffuse.csv")
 #data08 = pd.read_csv(dataPath2 + "string08.csv")
 
 n = data["t"].unique()
-numSnapShots = 20
+numSnapShots = 250
 interval = int((len(n)+1)/numSnapShots)
-interval = 15
+interval = 30
 data1 = data[data["t"] % interval == 0]
 data1.reset_index(inplace=True, drop=True)
 n = data1["t"].unique()  # for every other n
@@ -48,7 +48,7 @@ for i, N in enumerate(n):
 
     PNGplotPathLAPTOP = "C:\\Users\\mcha7\\Desktop\\COMP_PHYS\\HW7\\Plots\\Animations\\"
     PNGplotPathDESKTOP = "C:\\Users\\mcha7\\OneDrive\\Desktop\\Code\\COMP_PHYS\\PHYS-401-CompPhys\\HW7\\Plots\\Animations\\"
-    imPath = PNGplotPathDESKTOP + f"diffuse{i+1}.png"
+    imPath = PNGplotPathLAPTOP + f"diffuse{i+1}.png"
     # store path on file
 
     imageList.append(imPath)
@@ -62,4 +62,4 @@ duration = len(imageList)/fps
 print(f"Animation will take {duration} seconds")
 for path in imageList:
     images.append(imageio.imread(path))
-imageio.mimsave(plotPath2+"diffusion.gif", images, fps=fps)
+imageio.mimsave(plotPath1+"diffusion.gif", images, fps=fps)
